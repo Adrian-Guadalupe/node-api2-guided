@@ -1,12 +1,10 @@
 const express = require('express')
-const hubsRouter = require('./hubs/hubs-router.js')
+const hubsRouter = require('../hubs/hubs-router.js')
 
 const server = express()
 
 server.use(express.json())
-server.use('/api/hubs', hubsRouter)
-
-// endpoints
+server.use('/api/hubs', hubsRouter) // the router handles endponts that begin with /api/hubs
 
 server.get('/', (req, res) => {
    res.send(`
@@ -14,5 +12,5 @@ server.get('/', (req, res) => {
      <p>Welcome to the Lambda Hubs API</p>
    `);
  });
-
+ 
 module.exports = server;

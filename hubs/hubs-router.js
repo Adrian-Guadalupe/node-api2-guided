@@ -1,10 +1,11 @@
 const express = require('express')
 const Hubs = require('./hubs-model.js')
 
-const router = express.Router()
+// notice uppercase R
+const router = express.Router() // invoke Router()
 
-// if we are mounted to /api/hubs, the following would only work for 
-// /api/hubs/api/hubs
+// the router handles endponts that begin with /api/hubs
+// router only cares about what comes after /api/hubs
 router.get('/', (req, res) => {
    Hubs.find(req.query)
       .then(hubs => {
@@ -18,6 +19,16 @@ router.get('/', (req, res) => {
          });
       });
 });
+
+router.get('/something', (req, res) => {
+   res.send('nothing to see here...')
+})
+
+// find more code in lecture video for subroutes here //
+
+
+
+//
  
 router.get('/:id', (req, res) => {
    Hubs.findById(req.params.id)
